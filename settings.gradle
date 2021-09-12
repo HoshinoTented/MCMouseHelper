@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/gradle' }
+        maven { url 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    resolutionStrategy {
+        eachPlugin { plugin ->
+            def pluginId = plugin.requested.id
+
+            if (pluginId.namespace == "net.minecraftforge" && pluginId.name == "gradle") {
+                plugin.useModule("net.minecraftforge.gradle:ForgeGradle:${plugin.requested.version}")
+            }
+        }
+    }
+}
+
+rootProject.name = 'MouseHelper'
+

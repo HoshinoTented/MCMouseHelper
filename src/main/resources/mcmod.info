@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mousehelper",
+  "name": "Mouse Helper",
+  "description": "Keeping Breaking Block or Using Item, FREE YOUR HANDS!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["HoshinoTented"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
