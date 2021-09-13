@@ -30,32 +30,29 @@ object WorldEventHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     fun onTick(event: TickEvent.ClientTickEvent) {
-        val mouseOver = mc.objectMouseOver ?: null
+        val worldIn = mc.world ?: return
+        val mouseOver = mc.objectMouseOver ?: return
 
         if (KeyEventHandler.keepClick) {
-            if (mouseOver != null) {
-                if (mouseOver.typeOfHit === RayTraceResult.Type.BLOCK) {
-                    if (!mc.world.isAirBlock(mouseOver.blockPos)) {
-                        mc.playerController.onPlayerDamageBlock(mouseOver.blockPos, mouseOver.sideHit)
-                    }
+            if (mouseOver.typeOfHit === RayTraceResult.Type.BLOCK) {
+                if (!mc.world.isAirBlock(mouseOver.blockPos)) {
+                    mc.playerController.onPlayerDamageBlock(mouseOver.blockPos, mouseOver.sideHit)
                 }
             }
         }
 
         if (KeyEventHandler.keepUse) {
-            if (mouseOver != null) {
-                if (mouseOver.typeOfHit === RayTraceResult.Type.BLOCK) {
-                    if (!mc.world.isAirBlock(mouseOver.blockPos)) {
-                        for (hand in EnumHand.values()) {
-                            mc.playerController.processRightClickBlock(
-                                mc.player,
-                                mc.world,
-                                mouseOver.blockPos,
-                                mouseOver.sideHit,
-                                mc.objectMouseOver.hitVec,
-                                hand
-                            )
-                        }
+            if (mouseOver.typeOfHit === RayTraceResult.Type.BLOCK) {
+                if (!worldIn.isAirBlock(mouseOver.blockPos)) {
+                    for (hand in EnumHand.values()) {
+                        mc.playerController.processRightClickBlock(
+                            mc.player,
+                            mc.world,
+                            mouseOver.blockPos,
+                            mouseOver.sideHit,
+                            mc.objectMouseOver.hitVec,
+                            hand
+                        )
                     }
                 }
             }
